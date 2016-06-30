@@ -1,4 +1,4 @@
-package org.filho.litecommerce;
+package org.filho.litecommerce.controllers;
 
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
@@ -7,15 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @EnableAutoConfiguration
-public class Example {
+public class HelloController {
 
-    @RequestMapping("/")
+    @RequestMapping("/hello")
     String home() {
-        return "Hello World!";
-    }
-
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(Example.class, args);
+        return "<h1>Hello World!</h1>";
     }
 
 }
