@@ -1,28 +1,30 @@
-spring:
-  profiles:
-    active: dev
+db:
+  driver: org.h2.Driver
+  password: ""
+  username: ""
+  url: jdbc:h2:./database/litecommerce;DB_CLOSE_ON_EXIT=FALSE
+  teste: olaaaaaaaaaaaaaaa
+  # url: jdbc:h2:test;DB_CLOSE_ON_EXIT=FALSE
 
-server:
-  compression.enabled: true
-  port: 8080
-
-params:
-  datasource:
-    driverClassName: org.apache.derby.jdbc.EmbeddedDriver
-    maximumPoolSize: 10
+# hibernate:
+#   dialect: org.hibernate.dialect.H2Dialect
+#   show_sql: true
+#   hbm2ddl.auto: create
 
 spring.jpa:
   show-sql: true
   hibernate:
     ddl-auto: update
 
----
-
 spring:
-  profiles: dev
-
-  params:
-    datasource:
-      jdbcUrl: jdbc:derby:database/litecommerce;create=true # Embedded
-
----
+  jmx.enabled: false
+  application:
+    name: litecommerce
+  datasource:
+    # driverClassName: org.apache.derby.jdbc.EmbeddedDriver
+    # url: jdbc:derby:database/litecommerce;create=true # Embedded
+    #driverClassName: org.apache.derby.jdbc.EmbeddedDriver
+    url: jdbc:h2:./database/litecommerce;DB_CLOSE_ON_EXIT=FALSE
+server:
+  compression.enabled: true
+  port: 8080
