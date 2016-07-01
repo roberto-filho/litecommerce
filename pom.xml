@@ -40,6 +40,11 @@
       <scope>test</scope>
     </dependency>
     
+    <!-- Spring boot dependencies -->
+    <!-- Thymeleaf -->
+    <!-- Tomcat -->
+    <!-- data-jpa -->
+    
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
@@ -53,8 +58,11 @@
         <artifactId>spring-boot-starter-tomcat</artifactId>
         <scope>provided</scope>
     </dependency>
-    
-    <!-- JPA support -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <optional>true</optional>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -69,10 +77,16 @@
     </dependency> -->
     
     <!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
-    <dependency>
+    <!-- <dependency>
       <groupId>org.apache.derby</groupId>
       <artifactId>derby</artifactId>
+    </dependency> -->
+    <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
     </dependency>
+    
     
     <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
     <dependency>
@@ -80,11 +94,18 @@
       <artifactId>guava</artifactId>
       <version>19.0</version>
     </dependency>
-        
+    
+    <!-- Eclipselink -->
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>eclipselink</artifactId>
+      <version>2.5.0-RC1</version>
+    </dependency>
     
   </dependencies>
   
   <build>
+  
     <finalName>litecommerce</finalName>
     
     <plugins>
@@ -93,5 +114,6 @@
             <artifactId>spring-boot-maven-plugin</artifactId>
         </plugin>
     </plugins>
+    
   </build>
 </project>
