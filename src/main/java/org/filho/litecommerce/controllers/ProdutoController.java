@@ -21,18 +21,18 @@ public class ProdutoController {
 		
 		model.addAttribute("produtos", repo.findAll());
 		
-		return "list";
+		return "produto/list";
 	}
 	
 	@RequestMapping("/new")
 	public String create() {
-	  return "new";
+	  return "produto/new";
 	}
 	
 	@RequestMapping("/{id}")
 	public String showProduto(@PathVariable("id") Produto produto, Model model) {
 		model.addAttribute("produto", produto);
 		
-		return "show";
+		return "produto/show";
 	}
 }

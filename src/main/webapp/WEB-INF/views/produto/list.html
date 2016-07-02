@@ -1,13 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head"></head>
+  <head th:replace="fragments/header :: head" />
 <body>
-	<div th:replace="fragments/nav"></div>
+	
+	<div th:replace="fragments/header :: nav"></div>
 	
 	<div class="container">
 		
 		<div class="page-header">
-			<h1 th:text="'I\'m going to list everyone!'" />
+			<h1 th:text="'I\'m going to list everyone!'"></h1>
 		</div>
 		
 		<div class="col-md-6">
