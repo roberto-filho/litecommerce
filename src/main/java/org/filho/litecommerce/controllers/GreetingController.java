@@ -28,10 +28,10 @@ public class GreetingController {
   public String home(Model model, HttpSession session) {
     String visitor = (String) session.getAttribute("visitor");
     
-    if(visitor == null) {
+    if(visitor == null)
       session.setAttribute("visitor", "false");
-    }
-      model.addAttribute("visitor", "visitor");
+    
+    model.addAttribute("visitor", visitor == null);
     
     return "index";
   }

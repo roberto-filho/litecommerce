@@ -26,6 +26,7 @@ public class CarrinhoCompras {
     // Adicionar o produto no carrinho
     Integer quantidade = produtos.get(produto);
     
+    // Se não buscou quantidade, não exise o produto no carrinho
     if(quantidade == null) {
       quantidade = 1;
     } else
