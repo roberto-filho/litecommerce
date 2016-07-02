@@ -6,13 +6,13 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Bem-vindo!</h1>
+        <h1 th:text="'Bem-vindo! ${visitor}'">Bem-vindo!</h1>
         <p class="lead"><h2>Uma simples aplicação <strong>Spring</strong> ;)</h2></p>
       </div>
 
     </div><!-- /.container -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    
+    <div th:replace="fragments/footer"></div>
+    
   </body>
 </html>

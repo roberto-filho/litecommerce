@@ -8,6 +8,12 @@ import org.filho.litecommerce.model.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Criada originalmente para ser um service... mas acabou sendo
+ * substituída pelo {@code ProdutoRepository}.
+ * @author Roberto Filho
+ *
+ */
 @Repository
 public class ProdutoService {
 

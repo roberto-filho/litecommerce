@@ -26,6 +26,9 @@ public class ProdutoController {
 	
 	@RequestMapping("/new")
 	public String create() {
+	  
+	  
+	  
 	  return "produto/new";
 	}
 	

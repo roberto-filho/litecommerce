@@ -2,6 +2,8 @@ package org.filho.litecommerce.controllers;
 
 import java.math.BigDecimal;
 
+import javax.servlet.http.HttpSession;
+
 import org.filho.litecommerce.data.ProdutoRepository;
 import org.filho.litecommerce.model.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,32 +15,39 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class GreetingController {
 
-	@Autowired
-	private ProdutoRepository service;
-	
-    @RequestMapping("/greeting")
-    public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "greeting";
-    }
+  @Autowired
+  private ProdutoRepository service;
+
+  @RequestMapping("/greeting")
+  public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model) {
+    model.addAttribute("name", name);
+    return "greeting";
+  }
+
+  @RequestMapping("/")
+  public String home(Model model, HttpSession session) {
+    String visitor = (String) session.getAttribute("visitor");
     
-    @RequestMapping("/")
-    public String home() {
-    	return "index";
+    if(visitor == null) {
+      session.setAttribute("visitor", "false");
     }
+      model.addAttribute("visitor", "visitor");
     
-    @RequestMapping("/populate")
-    public String populate(Model model) {
-    	
-    	Produto produto = new Produto();
-    	produto.setNome("Chinelo");
-    	produto.setCustoCompra(BigDecimal.TEN);
-    	
-    	service.save(produto);
-    	
-    	model.addAttribute("nome", produto.getNome());
-    	
-    	return "show";
-    }
+    return "index";
+  }
+
+  @RequestMapping("/populate")
+  public String populate(Model model) {
+
+    Produto produto = new Produto();
+    produto.setNome("Chinelo");
+    produto.setCustoCompra(BigDecimal.TEN);
+
+    service.save(produto);
+
+    model.addAttribute("nome", produto.getNome());
+
+    return "show";
+  }
 
 }
