@@ -32,7 +32,7 @@ public class GreetingController {
     	
     	Produto produto = new Produto();
     	produto.setNome("Chinelo");
-    	produto.setPrice(BigDecimal.TEN);
+    	produto.setCustoCompra(BigDecimal.TEN);
     	
     	service.save(produto);
     	

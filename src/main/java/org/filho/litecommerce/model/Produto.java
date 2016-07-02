@@ -18,7 +18,7 @@ public class Produto implements Serializable {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   private String nome;
-  private BigDecimal custoCompra;
+  private BigDecimal custoCompra = BigDecimal.ZERO;
 
   public Long getId() {
     return id;

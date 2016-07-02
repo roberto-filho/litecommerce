@@ -24,6 +24,11 @@ public class ProdutoController {
 		return "list";
 	}
 	
+	@RequestMapping("/new")
+	public String create() {
+	  return "new";
+	}
+	
 	@RequestMapping("/{id}")
 	public String showProduto(@PathVariable("id") Produto produto, Model model) {
 		model.addAttribute("produto", produto);
