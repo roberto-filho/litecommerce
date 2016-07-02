@@ -1,43 +1,32 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head> 
-    <title>Produto Store</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="assets/css/bootstrap.css" />
-</head>
+<head th:replace="fragments/head"></head>
 <body>
-	<header>
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-5"><h1>Lite commerce</h1></div>
-				<div class="col-xs-7">
-					<menu>
-						<ul>
-							<li><a class="pull-right" href="/hello">Home</a></li>
-						</ul>
-					</menu>
-				</div>
-			</div>
-		</div>
-	</header>
-	<section id="subtitle">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12">
-					<h2>Uma simples aplicação <strong>Spring</strong> ;)</h2>
-				</div>
-			</div>
-		</div>
-	</section>
+	<div th:replace="fragments/nav"></div>
+	
 	<div class="container">
-		<div class="row">
-			<p th:text="'I\'m going to list everyone!'" />
+		
+		<div class="page-header">
+			<h1 th:text="'I\'m going to list everyone!'" />
 		</div>
-		<div th:each="p : ${produtos}">
-			<span th:text="${p.id}"></span>
-			<span th:text="${p.nome}"></span>
-			<span th:text="${p.price}"></span>
+		
+		<div class="col-md-6">
+		  <table class="table">
+		    <caption>Produtos cadastrados</caption>
+		    <tr>
+		      <th>#</th>
+		      <th>Nome</th>
+		      <th>Custo</th>
+		    </tr>
+		    <tr th:each="p : ${produtos}">
+					<td th:text="${p.id}">id</td>
+					<td th:text="${p.nome}">nome</td>
+					<td th:text="${p.custoCompra}">custo de compra</td>
+		    </tr>
+		  </table>
 		</div>
-    </div>
+		
+  </div>
+  
 </body>
 </html>

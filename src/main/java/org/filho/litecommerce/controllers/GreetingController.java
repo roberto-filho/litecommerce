@@ -22,7 +22,7 @@ public class GreetingController {
         return "greeting";
     }
     
-    @RequestMapping("/home")
+    @RequestMapping("/")
     public String home() {
     	return "index";
     }
