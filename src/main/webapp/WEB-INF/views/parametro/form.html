@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+
+	<form th:fragment="edit" th:action="@{/parametros/save}" th:object="${parametro}" class="form-horizontal" method="post">
+	  <fieldset>
+	    
+      <legend>Edi&#xE7;&#xE3;o de par&#xE2;metros da loja</legend>
+      
+	    <div class="form-group">
+	      <label for="valorTotalDespesas" class="col-lg-2 control-label">Valor total das despesas</label>
+	      <div class="col-lg-10">
+	        <input type="text" th:field="*{valorTotalDespesas}" class="form-control" placeholder="Valor total das despesas da empresa"></input>
+	      </div>
+	    </div>
+	    
+      <div class="form-group">
+	      <label for="valorMargemLucro" class="col-lg-2 control-label">Margem de lucro</label>
+	      <div class="col-lg-10">
+	        <input type="number" th:field="*{valorMargemLucro}" class="form-control" placeholder="Margem de lucro"></input>
+	        <span class="help-block">Margem de lucro desejada. É opcional. </span>
+	      </div>
+	    </div>
+
+      <div class="form-group">
+	      <div class="col-lg-10 col-lg-offset-2">
+	        <button type="reset" class="btn btn-default">Cancel</button>
+	        <button type="submit" class="btn btn-primary">Submit</button>
+	      </div>
+	    </div>
+	  </fieldset>
+	</form>
+
+</html>

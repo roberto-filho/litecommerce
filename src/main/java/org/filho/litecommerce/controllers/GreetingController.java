@@ -38,16 +38,29 @@ public class GreetingController {
 
   @RequestMapping("/populate")
   public String populate(Model model) {
-
+    // Só gera um objeto padrão
     Produto produto = new Produto();
     produto.setNome("Chinelo");
-    produto.setCustoCompra(BigDecimal.TEN);
+    produto.setValorCustoCompra(BigDecimal.TEN);
 
     service.save(produto);
 
     model.addAttribute("nome", produto.getNome());
 
-    return "show";
+    return "redirect:/produtos";
+  }
+  
+  /**
+   * Remove todos os produtos cadastrados.
+   * @return 
+   */
+  @RequestMapping("/reset")
+  public String resetProdutos() {
+    // Remove todos os produtos cadastrados
+    Iterable<Produto> todos = service.findAll();
+    service.delete(todos);
+    
+    return "redirect:/produtos";
   }
 
 }

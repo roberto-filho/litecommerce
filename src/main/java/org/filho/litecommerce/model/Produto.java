@@ -17,7 +17,9 @@ public class Produto implements Serializable {
   @Id @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   private String nome;
-  private BigDecimal custoCompra = BigDecimal.ZERO;
+  private String descricao;
+  private BigDecimal valorCustoCompra = BigDecimal.ZERO;
+  private byte[] foto;
 
   public Long getId() {
     return id;
@@ -35,12 +37,28 @@ public class Produto implements Serializable {
     this.nome = nome;
   }
 
-  public BigDecimal getCustoCompra() {
-    return custoCompra;
+  public String getDescricao() {
+    return descricao;
   }
 
-  public void setCustoCompra(BigDecimal custoCompra) {
-    this.custoCompra = custoCompra;
+  public void setDescricao(String descricao) {
+    this.descricao = descricao;
+  }
+
+  public byte[] getFoto() {
+    return foto;
+  }
+
+  public void setFoto(byte[] foto) {
+    this.foto = foto;
+  }
+
+  public BigDecimal getValorCustoCompra() {
+    return valorCustoCompra;
+  }
+
+  public void setValorCustoCompra(BigDecimal valorCustoCompra) {
+    this.valorCustoCompra = valorCustoCompra;
   }
 
 }
