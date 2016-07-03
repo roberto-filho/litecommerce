@@ -31,6 +31,9 @@ public class ParametroLojaController {
   public String saveParametros(ParametroLoja parametro, RedirectAttributes att) {
     // Buscar o único parâmetro cadastrado
     ParametroLoja parametroBanco = lojaRespository.buscarUnico();
+    
+    // TODO Validar valores maiores que zero (exceto margem de lucro)
+    
     // Atualiza o parametro salvo e salva ele.
     lojaRespository.save(parametroBanco.atualizar(parametro));
     // Atualiza a página

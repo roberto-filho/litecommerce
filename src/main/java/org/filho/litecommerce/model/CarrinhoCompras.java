@@ -1,9 +1,15 @@
 package org.filho.litecommerce.model;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 /**
@@ -13,8 +19,14 @@ import com.google.common.collect.Maps;
  * @author Roberto Filho
  *
  */
+@Component("carrinho")
 @Scope("session")
-public class CarrinhoCompras {
+public class CarrinhoCompras implements Serializable {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
+  
   private Map<Produto, Integer> produtos = Maps.newHashMap();
   
   /**
@@ -22,7 +34,7 @@ public class CarrinhoCompras {
    * @param produto o produto a ser adicionado
    * @return a quantidade desse produto que o carrinho possui.
    */
-  public int addProduto(Produto produto) {
+  public void addProduto(Produto produto) {
     // Adicionar o produto no carrinho
     Integer quantidade = produtos.get(produto);
     
@@ -32,7 +44,25 @@ public class CarrinhoCompras {
     } else
       quantidade++;
     
-    return produtos.put(produto, quantidade);
+    // Adiciona nos produtos
+    produtos.put(produto, quantidade);
+  }
+  
+  public int quantidadeProduto(Produto p) {
+    return produtos.getOrDefault(p, 0);
+  }
+  
+  /**
+   * Retorna uma cópia dos produtos deste carrinho para
+   * não permitir edição do carrinho diretamente.
+   * @return os produtos deste carrinho
+   */
+  public HashMap<Produto, Integer> getProdutos() {
+    return Maps.newHashMap(produtos);
+  }
+  
+  public List<Produto> getProdutosList() {
+    return Lists.newArrayList(produtos.keySet());
   }
   
 }

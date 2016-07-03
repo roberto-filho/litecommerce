@@ -21,6 +21,7 @@
   		      <th>Descri&#xE7;&#xE3;o</th>
   		      <th class="text-right">Custo</th>
   		      <th class="text-right">Pre&#xE7;o</th>
+  		      <th class="text-right"></th>
   		    </tr>
   		    <tr th:each="p : ${produtos}">
   					<td th:text="${p.produto.id}">id</td>
@@ -29,6 +30,7 @@
   					<td th:text="${p.produto.descricao}">nome</td>
   					<td th:text="${p.produto.valorCustoCompra}" class="text-right">custo de compra</td>
   					<td th:text="${p.preco}" class="text-right">preco</td>
+  					<td><a class="btn btn-xs btn-success" th:href="@{'/carrinho/adicionar/'+${p.produto.id}}" th:text="'Adicionar ['+${carrinho.quantidadeProduto(p.produto)}+']'">Adicionar ao carrinho</a></td>
   					<!-- <td><img th:src="'/produtos/foto?id='+${p.id}" alt=""></img></td> -->
   		    </tr>
   		  </table>
