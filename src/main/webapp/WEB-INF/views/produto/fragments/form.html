@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
 
-	<form th:fragment="form" th:action="@{/produtos/create}" th:object="${produto}" class="form-horizontal" method="post">
+	<form th:fragment="form" th:action="@{/produtos/create}" th:object="${produto}" enctype="multipart/form-data" class="form-horizontal" method="post">
 	  <fieldset>
 	    
       <legend>Cadastro de produto</legend>

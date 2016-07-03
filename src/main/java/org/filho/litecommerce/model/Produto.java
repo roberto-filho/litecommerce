@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 
 import javax.persistence.*;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+
 /**
  * Entity implementation class for Entity: Produto
  *
@@ -19,6 +21,7 @@ public class Produto implements Serializable {
   private String nome;
   private String descricao;
   private BigDecimal valorCustoCompra = BigDecimal.ZERO;
+  @Column(columnDefinition="blob")
   private byte[] foto;
 
   public Long getId() {
@@ -59,6 +62,10 @@ public class Produto implements Serializable {
 
   public void setValorCustoCompra(BigDecimal valorCustoCompra) {
     this.valorCustoCompra = valorCustoCompra;
+  }
+  
+  public String getFotoBase64encoded() {
+    return Base64.encodeBase64String(foto);
   }
 
 }

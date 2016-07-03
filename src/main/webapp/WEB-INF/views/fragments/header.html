@@ -37,9 +37,17 @@
 		    </div>
 		    <div id="navbar-main" class="collapse navbar-collapse">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="#" th:href="@{/}">Home</a></li>
-		        <li><a href="#produtos" th:href="@{/produtos}">Produtos</a></li>
-		        <li><a href="#contact">Contact</a></li>
+		        <!-- <li class="active"><a href="#" th:href="@{/}">Home</a></li> -->
+		        <li><a href="#" th:href="@{/}">Home</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produtos <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#" th:href="@{/produtos}">Listar</a></li>
+                <li><a href="#" th:href="@{/produtos/new}">Cadastrar novo</a></li>
+              </ul>
+            </li>
+		        <!-- <li><a href="#produtos" th:href="@{/produtos}">Produtos</a></li> -->
+		        <li><a href="#parametros" th:href="@{/parametros}">Par&#xE2;metros</a></li>
 		      </ul>
 		    </div><!--/.nav-collapse -->
 		  </div>
