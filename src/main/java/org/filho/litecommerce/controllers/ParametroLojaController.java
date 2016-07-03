@@ -1,41 +1,45 @@
 package org.filho.litecommerce.controllers;
 
-import java.math.BigDecimal;
-
 import org.filho.litecommerce.data.ParametroLojaRepository;
 import org.filho.litecommerce.model.ParametroLoja;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.google.common.collect.Iterables;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/parametros")
 public class ParametroLojaController {
 
-  @Autowired
-  private ParametroLojaRepository lojaDao;
+  @Autowired private ParametroLojaRepository lojaRespository;
 
   @RequestMapping
   public String edit(Model model) {
-    // Se não tem nenhum parâmetro ainda, cria um novo
-    ParametroLoja parametro = Iterables.getFirst(lojaDao.findAll(), new ParametroLoja());
-    
-    model.addAttribute("parametro", parametro);
+    model.addAttribute("parametro", lojaRespository.buscarUnico());
     
     return "parametro/edit";
   }
 
+  /**
+   * Salva o parâmetro.
+   * @param parametro os dados do parâmetro.
+   * @param att para usar redirect att.
+   * @return
+   */
   @RequestMapping("save")
-  public String saveParametros(
-      BigDecimal valorTotalDespesas,
-      BigDecimal valorMargemLucro) {
-    // TODO Salva o parâmetro (possivelmente excluindo o antigo?)
-    
-    
-    
+  public String saveParametros(ParametroLoja parametro, RedirectAttributes att) {
+    // Buscar o único parâmetro cadastrado
+    ParametroLoja parametroBanco = lojaRespository.buscarUnico();
+    // Atualiza o parametro salvo e salva ele.
+    lojaRespository.save(parametroBanco.atualizar(parametro));
+    // Atualiza a página
+    return "redirect:";
+  }
+  
+  @RequestMapping("reset")
+  public String limpar() {
+    lojaRespository.deleteAll();
     return "redirect:";
   }
 

@@ -14,6 +14,15 @@ public class ParametroLoja {
   private Long id;
   private BigDecimal valorTotalDespesas = new BigDecimal(400L);
   private BigDecimal valorMargemLucro = BigDecimal.ZERO;
+  
+  public ParametroLoja atualizar(ParametroLoja parametro) {
+    if(parametro != null) {
+      valorTotalDespesas = parametro.valorTotalDespesas;
+      valorMargemLucro = parametro.valorMargemLucro;
+    }
+    
+    return this;
+  }
 
   public Long getId() {
     return id;

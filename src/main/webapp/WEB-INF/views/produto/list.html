@@ -8,23 +8,27 @@
   	<div class="container">
   		
   		<div class="page-header">
-  			<h1 th:text="'I\'m going to list everyone!'"></h1>
+  			<h1 th:text="'Produtos à venda!'"></h1>
   		</div>
   		
   		<div class="col-md-6">
   		  <table class="table">
-  		    <caption>Produtos cadastrados</caption>
+  		    <!-- <caption>Produtos cadastrados</caption> -->
   		    <tr>
   		      <th>#</th>
-  		      <th>Nome</th>
-  		      <th>Custo</th>
   		      <th>Foto</th>
+  		      <th>Nome</th>
+  		      <th>Descri&#xE7;&#xE3;o</th>
+  		      <th class="text-right">Custo</th>
+  		      <th class="text-right">Pre&#xE7;o</th>
   		    </tr>
   		    <tr th:each="p : ${produtos}">
-  					<td th:text="${p.id}">id</td>
-  					<td th:text="${p.nome}">nome</td>
-  					<td th:text="${p.valorCustoCompra}">custo de compra</td>
-  					<td><img th:src="*{'data:image/png;base64,'+p.fotoBase64encoded}" th:alt="${p.descricao}" height="50" width="50" /></td>
+  					<td th:text="${p.produto.id}">id</td>
+  					<td><img th:src="*{'data:image/png;base64,'+p.produto.fotoBase64encoded}" th:alt="${p.produto.descricao}" height="50" width="50" /></td>
+  					<td th:text="${p.produto.nome}">nome</td>
+  					<td th:text="${p.produto.descricao}">nome</td>
+  					<td th:text="${p.produto.valorCustoCompra}" class="text-right">custo de compra</td>
+  					<td th:text="${p.preco}" class="text-right">preco</td>
   					<!-- <td><img th:src="'/produtos/foto?id='+${p.id}" alt=""></img></td> -->
   		    </tr>
   		  </table>

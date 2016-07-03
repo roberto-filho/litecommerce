@@ -1,4 +1,4 @@
-package org.filho.litecommerce.service;
+package org.filho.litecommerce.data.custom;
 
 import java.util.List;
 
@@ -15,12 +15,12 @@ import org.springframework.stereotype.Repository;
  *
  */
 @Repository
-public class ProdutoService {
+public class CustomProdutoRepository {
 
 	@Autowired
 	EntityManager em;
 	
-	public List<Produto> all() {
+	public List<Produto> allComPreco() {
 		return em.createQuery("Select p from Produto p", Produto.class).getResultList();
 	}
 }
