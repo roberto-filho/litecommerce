@@ -23,6 +23,10 @@ public class ProdutoRepositoryImpl implements ProdutoRepositoryCustom {
     // Busca o número de produtos cadastrados para realizar o rateio do preço
     int numeroProdutosCadastrados = Lists.newArrayList(produtoRepo.findAll()).size();
     
+    // Para não dar divisão por 0
+    if (numeroProdutosCadastrados == 0)
+      numeroProdutosCadastrados = 1;
+    
     // Busca os parâmetros da loja, onde estão informados valores
     ParametroLoja parametro = lojaRepo.buscarUnico();
     

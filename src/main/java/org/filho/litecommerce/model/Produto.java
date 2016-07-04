@@ -3,11 +3,13 @@ package org.filho.litecommerce.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Entity implementation class for Entity: Produto
@@ -18,18 +20,11 @@ public class Produto implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  @Id @GeneratedValue(strategy = GenerationType.AUTO)
+  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  
-  @Size(min=10, max=50, message="Favor informar um nome de até 50 caracteres")
   private String nome;
-  
-  @Size(min=10, max=200, message="Favor informar uma descrição de até 50 caracteres")
   private String descricao;
-  
-  @NotEmpty
   private BigDecimal valorCustoCompra = BigDecimal.ZERO;
-  
   @Column(columnDefinition="blob")
   private byte[] foto;
 

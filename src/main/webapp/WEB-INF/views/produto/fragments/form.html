@@ -24,8 +24,8 @@
       <div class="form-group">
 	      <label for="descricao" class="col-lg-2 control-label">Descri&#xE7;&#xE3;o</label>
 	      <div class="col-lg-10">
-	        <textarea class="form-control" rows="3" th:field="*{descricao}"></textarea>
-	        <span class="help-block with-errors">Informe a descrição do produto</span>
+	        <textarea class="form-control" rows="3" maxlength="200" th:field="*{descricao}" required="required" data-error="Informe a descrição do produto"></textarea>
+	        <span class="help-block with-errors">Descrição do produto</span>
 	      </div>
 	    </div>
 

@@ -3,6 +3,7 @@ package org.filho.litecommerce.data.custom;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import org.filho.litecommerce.model.ParametroLoja;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,18 @@ public class ParametroLojaRepositoryImpl implements ParametroLojaRepositoryCusto
   EntityManager em;
   
   @Override
+  @Transactional
   public ParametroLoja buscarUnico() {
     // Busca todos os parâmetros
     List<ParametroLoja> all = em.createQuery("from ParametroLoja", ParametroLoja.class).getResultList();
     // Retorna só o primeiro
-    return Iterables.getFirst(all, null);
+    ParametroLoja param = Iterables.getFirst(all, null);
+    
+    if(param == null) {
+      param = em.merge(new ParametroLoja());
+    }
+    
+    return param;
   }
 
 }

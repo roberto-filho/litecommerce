@@ -37,7 +37,7 @@ public class ParametroLojaController {
     // Atualiza o parametro salvo e salva ele.
     lojaRespository.save(parametroBanco.atualizar(parametro));
     // Atualiza a página
-    return "redirect:";
+    return "redirect:/parametros";
   }
   
   @RequestMapping("reset")
