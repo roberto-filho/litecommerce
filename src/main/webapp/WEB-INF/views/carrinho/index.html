@@ -29,9 +29,9 @@
   					<td th:text="${p.descricao}">nome</td>
   					<td th:text="${@precoProduto.preco(p.id)}" class="text-right">preco do produto</td>
   					<td class="text-right">
-              <form action="#" th:action="@{'/carrinho/quantidade/'+${p.id}}" class="form-inline">
+              <form action="#" th:action="@{'/carrinho/quantidade/'+${p.id}}" class="form-inline" data-toggle="validate">
                 <label class="sr-only" for="exampleInputEmail3">Quantidade</label>
-                <input type="number" class="form-control input-sm" id="qtd" name="qtd" onenter="this.form.submit();" style="width: 80px" th:value="${@carrinho.quantidadeProduto(p)}"/>
+                <input type="number" class="form-control input-sm" id="qtd" name="qtd" onenter="this.form.submit();" required="required" style="width: 80px" th:value="${@carrinho.quantidadeProduto(p)}"/>
               </form>
             </td>
   		    </tr>
@@ -40,9 +40,12 @@
   		
     </div>
     
-    <div class="well text-right">Total da compra <h2 th:text="${total}"></h2></div>
+    <div class="well text-right">
+      <label for="total">Total da compra</label>
+      <h2 th:text="${total}"></h2>
+    </div>
     
-    <div th:replace="fragments/footer"></div>
+    <div id="total" th:replace="fragments/footer"></div>
     
   </body>
 </html>

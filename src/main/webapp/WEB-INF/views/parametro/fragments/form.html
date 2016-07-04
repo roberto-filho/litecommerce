@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
 
-	<form th:fragment="edit" th:action="@{/parametros/save}" th:object="${parametro}" class="form-horizontal" method="post">
+	<form th:fragment="edit" th:action="@{/parametros/save}" th:object="${parametro}" class="form-horizontal" method="post" data-toggle="validator">
 	  <fieldset>
 	    
       <legend>Edi&#xE7;&#xE3;o de par&#xE2;metros da loja</legend>
@@ -9,7 +9,7 @@
 	    <div class="form-group">
 	      <label for="valorTotalDespesas" class="col-lg-2 control-label">Valor total das despesas</label>
 	      <div class="col-lg-10">
-	        <input type="text" th:field="*{valorTotalDespesas}" class="form-control" placeholder="Valor total das despesas da empresa"></input>
+	        <input type="text" th:field="*{valorTotalDespesas}" class="form-control" placeholder="Valor total das despesas da empresa" required="required"></input>
 	      </div>
 	    </div>
 	    

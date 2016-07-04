@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
 
-	<form th:fragment="form" th:action="@{/produtos/create}" th:object="${produto}" enctype="multipart/form-data" class="form-horizontal" method="post">
+	<form th:fragment="form" th:action="@{/produtos/create}" th:object="${produto}" enctype="multipart/form-data" class="form-horizontal" method="post" data-toggle="validator">
 	  <fieldset>
 	    
       <legend>Cadastro de produto</legend>
@@ -9,23 +9,23 @@
 	    <div class="form-group">
 	      <label for="nome" class="col-lg-2 control-label">Nome</label>
 	      <div class="col-lg-10">
-	        <input type="text" th:field="*{nome}" maxlength="50" class="form-control" placeholder="Nome do produto"></input>
+	        <input type="text" th:field="*{nome}" maxlength="50" class="form-control" placeholder="Nome do produto" required="required"></input>
 	      </div>
 	    </div>
 	    
       <div class="form-group">
 	      <label for="valorCustoCompra" class="col-lg-2 control-label">Custo</label>
 	      <div class="col-lg-10">
-	        <input type="text" th:field="*{valorCustoCompra}" class="form-control" placeholder="Custo"></input>
-	        <span class="help-block">Custo de compra do produto</span>
+	        <input type="text" th:field="*{valorCustoCompra}" class="form-control" placeholder="Custo" required="required" data-error="Informe o custo de compra"></input>
+	        <span class="help-block with-errors">Custo de compra do produto</span>
 	      </div>
 	    </div>
 	    
       <div class="form-group">
 	      <label for="descricao" class="col-lg-2 control-label">Descri&#xE7;&#xE3;o</label>
 	      <div class="col-lg-10">
-	        <textarea class="form-control" rows="3" maxlength="200" th:field="*{descricao}"></textarea>
-	        <span class="help-block">Informe a descrição do produto</span>
+	        <textarea class="form-control" rows="3" th:field="*{descricao}"></textarea>
+	        <span class="help-block with-errors">Informe a descrição do produto</span>
 	      </div>
 	    </div>
 
