@@ -1,31 +1,26 @@
 package org.filho.litecommerce.data.custom;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.List;
 
 import org.filho.litecommerce.data.ParametroLojaRepository;
 import org.filho.litecommerce.data.ProdutoRepository;
-import org.filho.litecommerce.helpers.ProdutoComPreco;
 import org.filho.litecommerce.model.ParametroLoja;
 import org.filho.litecommerce.model.Produto;
-import org.filho.litecommerce.specifications.ProdutoSpecifications;
+import org.filho.litecommerce.model.ProdutoComPreco;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.Lists;
 
 public class ProdutoRepositoryImpl implements ProdutoRepositoryCustom {
 
-  private static final MathContext MATH_CONTEXT = new MathContext(20, RoundingMode.DOWN);
-  
   @Autowired ParametroLojaRepository lojaRepo;
   @Autowired ProdutoRepository produtoRepo;
   
   @Override
   public List<ProdutoComPreco> calcularPrecos(Iterable<Produto> produtos) {
-    
- // Busca o número de produtos cadastrados para realizar o rateio do preço
+    // Busca o número de produtos cadastrados para realizar o rateio do preço
     int numeroProdutosCadastrados = Lists.newArrayList(produtoRepo.findAll()).size();
     
     // Busca os parâmetros da loja, onde estão informados valores
@@ -43,9 +38,6 @@ public class ProdutoRepositoryImpl implements ProdutoRepositoryCustom {
     
     // Transforma o lucro na representação decimal da porcentagem
     margemLucro = margemLucro.divide(new BigDecimal(100L), MATH_CONTEXT);
-    
-    // Busca os produtos que têm custo, pois os que não tem custo não são mostrados na lista
-    Iterable<Produto> produtosComCusto = produtoRepo.findAll(ProdutoSpecifications.produtosComCusto());
     
     // Cria a lista que será passada para a view
     List<ProdutoComPreco> comPreco = Lists.newArrayList();

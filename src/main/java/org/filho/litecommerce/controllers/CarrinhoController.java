@@ -5,15 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.filho.litecommerce.data.ProdutoRepository;
-import org.filho.litecommerce.helpers.ProdutoComPreco;
+import org.filho.litecommerce.data.custom.ProdutoRepositoryCustom;
 import org.filho.litecommerce.model.CarrinhoCompras;
 import org.filho.litecommerce.model.Produto;
+import org.filho.litecommerce.model.ProdutoComPreco;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/carrinho")
@@ -31,12 +33,21 @@ public class CarrinhoController {
    */
   @RequestMapping("/adicionar/{id}")
   public String adicionarProduto(@PathVariable("id") Produto produto) {
-    // TODO Adicionar o produto no carrinho da sessão do usuário
+    // Adicionar o produto no carrinho da sessão do usuário
     
     carrinho.addProduto(produto);
     
     //model.addAttribute("name", name);
     return "redirect:/produtos";
+  }
+  
+  @RequestMapping("/quantidade/{id}")
+  public String setQuantidade(@PathVariable("id") Produto produto, @RequestParam String qtd) {
+    // Não fiz nenhuma verificação aqui.
+    carrinho.setQuantidade(produto, Integer.valueOf(qtd));
+    
+    //model.addAttribute("name", name);
+    return "redirect:/carrinho";
   }
 
   @RequestMapping
@@ -49,9 +60,14 @@ public class CarrinhoController {
     BigDecimal total = BigDecimal.ZERO;
     
     for (ProdutoComPreco produtoComPreco : precos) {
+      BigDecimal preco = produtoComPreco.getPreco();
+      // Multiplicar pela quantidade
+      int quantidade = produtosQt.get(produtoComPreco.getProduto());
+      preco = preco.multiply(new BigDecimal(quantidade), ProdutoRepositoryCustom.MATH_CONTEXT);
+      
+      
       // Somar os preços
-      /// TODO Multiplicar pela quantidade
-      total = total.add(produtoComPreco.getPreco());
+      total = total.add(preco);
     }
     // Adiciona no model
     model.addAttribute("total", total);

@@ -1,7 +1,6 @@
 package org.filho.litecommerce.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +49,15 @@ public class CarrinhoCompras implements Serializable {
   
   public int quantidadeProduto(Produto p) {
     return produtos.getOrDefault(p, 0);
+  }
+  
+  /**
+   * Seta a quantidade de um dado produto no carrinho.
+   * @param produto o produto a ter a sua quantidade alterada
+   * @param qtd a nova quantidade
+   */
+  public void setQuantidade(Produto produto, int qtd) {
+    produtos.put(produto, qtd);
   }
   
   /**

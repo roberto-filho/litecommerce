@@ -1,9 +1,13 @@
-package org.filho.litecommerce.helpers;
+package org.filho.litecommerce.model;
 
 import java.math.BigDecimal;
 
-import org.filho.litecommerce.model.Produto;
-
+/**
+ * Esse VO foi criado para guardar o preço calculado de algum
+ * produto.
+ * @author Roberto Filho
+ *
+ */
 public class ProdutoComPreco {
   private Produto produto;
   private BigDecimal preco;

@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Entity implementation class for Entity: Produto
@@ -18,9 +20,16 @@ public class Produto implements Serializable {
 
   @Id @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
+  
+  @Size(min=10, max=50, message="Favor informar um nome de até 50 caracteres")
   private String nome;
+  
+  @Size(min=10, max=200, message="Favor informar uma descrição de até 50 caracteres")
   private String descricao;
+  
+  @NotEmpty
   private BigDecimal valorCustoCompra = BigDecimal.ZERO;
+  
   @Column(columnDefinition="blob")
   private byte[] foto;
 

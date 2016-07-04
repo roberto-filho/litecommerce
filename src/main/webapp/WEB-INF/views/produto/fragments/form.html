@@ -9,7 +9,7 @@
 	    <div class="form-group">
 	      <label for="nome" class="col-lg-2 control-label">Nome</label>
 	      <div class="col-lg-10">
-	        <input type="text" th:field="*{nome}" class="form-control" placeholder="Nome do produto"></input>
+	        <input type="text" th:field="*{nome}" maxlength="50" class="form-control" placeholder="Nome do produto"></input>
 	      </div>
 	    </div>
 	    
@@ -24,7 +24,7 @@
       <div class="form-group">
 	      <label for="descricao" class="col-lg-2 control-label">Descri&#xE7;&#xE3;o</label>
 	      <div class="col-lg-10">
-	        <textarea class="form-control" rows="3" th:field="*{descricao}"></textarea>
+	        <textarea class="form-control" rows="3" maxlength="200" th:field="*{descricao}"></textarea>
 	        <span class="help-block">Informe a descrição do produto</span>
 	      </div>
 	    </div>

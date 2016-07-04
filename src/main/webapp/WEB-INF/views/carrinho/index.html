@@ -11,7 +11,7 @@
   			<h1 th:text="'Carrinho de compras!'"></h1>
   		</div>
   		
-  		<div class="col-md-6">
+  		<div class="col-md-12">
   		  <table class="table">
   		    <!-- <caption>Produtos cadastrados</caption> -->
   		    <tr>
@@ -19,21 +19,28 @@
   		      <th>Foto</th>
   		      <th>Nome</th>
   		      <th>Descri&#xE7;&#xE3;o</th>
-  		      <th class="text-right">Custo</th>
+  		      <th class="text-right">Pre&#xE7;o</th>
+  		      <th class="text-right">Quantidade</th>
   		    </tr>
   		    <tr th:each="p : ${@carrinho.produtosList}">
   					<td th:text="${p.id}">id</td>
   					<td><img th:src="*{'data:image/png;base64,'+p.fotoBase64encoded}" th:alt="${p.descricao}" height="50" width="50" /></td>
   					<td th:text="${p.nome}">nome</td>
   					<td th:text="${p.descricao}">nome</td>
-  					<td th:text="${p.valorCustoCompra}" class="text-right">custo de compra</td>
-  					<!-- <td><img th:src="'/produtos/foto?id='+${p.id}" alt=""></img></td> -->
+  					<td th:text="${@precoProduto.preco(p.id)}" class="text-right">preco do produto</td>
+  					<td class="text-right">
+              <form action="#" th:action="@{'/carrinho/quantidade/'+${p.id}}" class="form-inline">
+                <label class="sr-only" for="exampleInputEmail3">Quantidade</label>
+                <input type="number" class="form-control input-sm" id="qtd" name="qtd" onenter="this.form.submit();" style="width: 80px" th:value="${@carrinho.quantidadeProduto(p)}"/>
+              </form>
+            </td>
   		    </tr>
   		  </table>
   		</div>
-      <div>Total <span th:text="${total}"></span></div>
   		
     </div>
+    
+    <div class="well text-right">Total da compra <h2 th:text="${total}"></h2></div>
     
     <div th:replace="fragments/footer"></div>
     

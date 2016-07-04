@@ -11,7 +11,7 @@
   			<h1 th:text="'Produtos à venda!'"></h1>
   		</div>
   		
-  		<div class="col-md-6">
+  		<div class="col-md-12">
   		  <table class="table">
   		    <!-- <caption>Produtos cadastrados</caption> -->
   		    <tr>
@@ -25,7 +25,7 @@
   		    </tr>
   		    <tr th:each="p : ${produtos}">
   					<td th:text="${p.produto.id}">id</td>
-  					<td><img th:src="*{'data:image/png;base64,'+p.produto.fotoBase64encoded}" th:alt="${p.produto.descricao}" height="50" width="50" /></td>
+  					<td><img th:src="*{'data:image/png;base64,'+p.produto.fotoBase64encoded}" th:alt="${p.produto.descricao}" height="50" width="50" class="img-rounded" /></td>
   					<td th:text="${p.produto.nome}">nome</td>
   					<td th:text="${p.produto.descricao}">nome</td>
   					<td th:text="${p.produto.valorCustoCompra}" class="text-right">custo de compra</td>

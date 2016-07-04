@@ -3,8 +3,6 @@ package org.filho.litecommerce.controllers;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,10 +14,9 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.filho.litecommerce.data.ParametroLojaRepository;
 import org.filho.litecommerce.data.ProdutoRepository;
-import org.filho.litecommerce.helpers.ProdutoComPreco;
 import org.filho.litecommerce.model.CarrinhoCompras;
-import org.filho.litecommerce.model.ParametroLoja;
 import org.filho.litecommerce.model.Produto;
+import org.filho.litecommerce.model.ProdutoComPreco;
 import org.filho.litecommerce.specifications.ProdutoSpecifications;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -31,8 +28,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.google.common.collect.Lists;
 
 @Controller
 @RequestMapping("/produtos")
@@ -49,8 +44,10 @@ public class ProdutoController {
   public String list(Model model) {
     if(carrinho == null)
       carrinho = new CarrinhoCompras();
-    // Cria a lista que será passada para a view
-    List<ProdutoComPreco> comPreco = produtoRepo.calcularPrecos(produtoRepo.findAll(ProdutoSpecifications.produtosComCusto()));
+    // Busca os produtos que têm custo, pois os que não tem custo não são mostrados na lista
+    List<Produto> produtosComCusto = produtoRepo.findAll(ProdutoSpecifications.produtosComCusto());
+    // Busca o preço dos produtos com custo
+    List<ProdutoComPreco> comPreco = produtoRepo.calcularPrecos(produtosComCusto);
     
     model.addAttribute("produtos", comPreco);
     model.addAttribute("carrinho", carrinho);
@@ -111,16 +108,6 @@ public class ProdutoController {
       return "data:image/jpeg;base64,"+encodedImage;
   }
   
-  @RequestMapping(value = "/foto", method = RequestMethod.GET)
-  public void showImage(@RequestParam("id") int produtoId, HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException{
-    Produto p = produtoRepo.findOne(new Long(produtoId));
-    
-    response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
-    response.getOutputStream().write(p.getFoto());
-
-    response.getOutputStream().close();
-  }
-
 //  @RequestMapping("{id}")
 //  public String showProduto(@PathVariable("id") Produto produto, Model model) {
 //    model.addAttribute("produto", produto);
