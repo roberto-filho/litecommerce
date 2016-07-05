@@ -3,6 +3,7 @@ package org.filho.litecommerce.controllers;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.filho.litecommerce.data.ProdutoRepository;
 import org.filho.litecommerce.data.custom.ProdutoRepositoryCustom;
@@ -16,6 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.google.common.collect.Maps;
 
 @Controller
 @RequestMapping("/carrinho")
@@ -57,6 +60,9 @@ public class CarrinhoController {
     
     List<ProdutoComPreco> precos = produtoRepo.calcularPrecos(carrinho.getProdutosList());
     
+    // Cria um map para os produtos/precos
+    Map<Produto, BigDecimal> produtoPrecos = Maps.newHashMap();
+    
     BigDecimal total = BigDecimal.ZERO;
     
     for (ProdutoComPreco produtoComPreco : precos) {
@@ -65,12 +71,16 @@ public class CarrinhoController {
       int quantidade = produtosQt.get(produtoComPreco.getProduto());
       preco = preco.multiply(new BigDecimal(quantidade), ProdutoRepositoryCustom.MATH_CONTEXT);
       
+      // Adiciona no map
+      produtoPrecos.put(produtoComPreco.getProduto(), preco);
       
       // Somar os preços
       total = total.add(preco);
     }
+    
     // Adiciona no model
     model.addAttribute("total", total);
+    model.addAttribute("produtos", produtoPrecos);
     
     return "carrinho/index";
   }

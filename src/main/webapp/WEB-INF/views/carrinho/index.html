@@ -22,12 +22,12 @@
   		      <th class="text-right">Pre&#xE7;o</th>
   		      <th class="text-right">Quantidade</th>
   		    </tr>
-  		    <tr th:each="p : ${@carrinho.produtosList}">
+  		    <tr th:each="p : ${produtos.keySet()}">
   					<td th:text="${p.id}">id</td>
   					<td><img th:src="*{'data:image/png;base64,'+p.fotoBase64encoded}" th:alt="${p.descricao}" height="50" width="50" /></td>
   					<td th:text="${p.nome}">nome</td>
   					<td th:text="${p.descricao}">nome</td>
-  					<td th:text="${@precoProduto.preco(p.id)}" class="text-right">preco do produto</td>
+  					<td th:text="${produtos.get(p)}" class="text-right">preco do produto</td>
   					<td class="text-right">
               <form action="#" th:action="@{'/carrinho/quantidade/'+${p.id}}" class="form-inline" data-toggle="validate">
                 <label class="sr-only" for="exampleInputEmail3">Quantidade</label>
